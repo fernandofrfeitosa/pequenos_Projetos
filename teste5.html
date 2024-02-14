@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div id="container">
+        <div id="header"><h1>Conversor de temperaturas</h1></div>
+        <div id="sidebarL"></div>
+
+        <!--codigo de conversão de temperartura -->
+         <div id="content">  <form >
+            <label for="tempInput" id="celsiuslabel"></label>
+            <input type="number" id="tempInput" name="tempImput" required>
+            <button id="alinha_botao"type="submit">Converter</button>
+        </form>
+        <!--campos de seleções de opções de escolha-->
+        <label for="opcao" id="op1">de:</label>
+            <select id="opcao">
+                <option id="opcao"value="1">fahrenheit</option>
+                <option id="opcao"value="2">kelvin</option>
+                <option id="opcao"value="3">Newton</option>
+                <option id="opcao"value="4">Celsius</option>
+            </select>
+
+           <label for="opcao" id="op2">Para:</label>
+                <select id="opcao2">
+                    <option id="opcao2"value="1">fahrenheit</option>
+                    <option id="opcao2"value="2">kelvin</option>
+                    <option id="opcao2"value="3">Newton</option>
+                    <option id="opcao"value="4">Celsius</option>
+                </select>    
+       <div id="result">resultado:</div>
+         </div>
+
+
+
+        <div id="sidebarR"></div>
+        <div id="footer"></div>
+    </div>
+
+    <!--script de js que verificara as opções de entarda formando os emparceramentos-->
+    <script>
+        document.getElementById('content').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var temperatura = parseFloat(document.getElementById('tempInput').value);
+            var opcaoDe = parseInt(document.getElementById('opcao').value);
+            var opcaoPara = parseInt(document.getElementById('opcao2').value);
+
+            var resultado;
+
+            switch (opcaoDe) {
+                case 1: // Celsius
+                    switch (opcaoPara) {
+                        case 1: // Celsius para Celsius
+                            resultado = temperatura;
+                            break;
+                        case 2: // Celsius para Fahrenheit
+                            resultado = (temperatura * 9/5) + 32;
+                            break;
+                        case 3: // Celsius para Kelvin
+                            resultado = temperatura + 273.15;
+                            break;
+                        case 4: // Celsius para Newton
+                            resultado = temperatura * 33/100;
+                            break;
+                    }
+                    break;
+                case 2: // Fahrenheit
+                    switch (opcaoPara) {
+                        case 1: // Fahrenheit para Celsius
+                            resultado = (temperatura - 32) * 5/9;
+                            break;
+                        case 2: // Fahrenheit para Fahrenheit
+                            resultado = temperatura;
+                            break;
+                        case 3: // Fahrenheit para Kelvin
+                            resultado = (temperatura - 32) * 5/9 + 273.15;
+                            break;
+                        case 4: // Fahrenheit para Newton
+                            resultado = (temperatura - 32) * 5/9 * 33/100;
+                            break;
+                    }
+                    break;
+                case 3: // Kelvin
+                    switch (opcaoPara) {
+                        case 1: // Kelvin para Celsius
+                            resultado = temperatura - 273.15;
+                            break;
+                        case 2: // Kelvin para Fahrenheit
+                            resultado = (temperatura - 273.15) * 9/5 + 32;
+                            break;
+                        case 3: // Kelvin para Kelvin
+                            resultado = temperatura;
+                            break;
+                        case 4: // Kelvin para Newton
+                            resultado = (temperatura - 273.15) * 33/100;
+                            break;
+                    }
+                    break;
+                case 4: // Newton
+                    switch (opcaoPara) {
+                        case 1: // Newton para Celsius
+                            resultado = temperatura * 100/33;
+                            break;
+                        case 2: // Newton para Fahrenheit
+                            resultado = (temperatura * 100/33) * 9/5 + 32;
+                            break;
+                        case 3: // Newton para Kelvin
+                            resultado = (temperatura * 100/33) + 273.15;
+                            break;
+                        case 4: // Newton para Newton
+                            resultado = temperatura;
+                            break;
+                    }
+                    break;
+                    
+                }
+
+            document.getElementById('result').innerHTML =  resultado.toFixed(2)+"&deg";
+        });
+    </script>
+
+</body>
+</html>
